@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CidadeService } from './cidade.service';
 
+interface Cidade {
+  id: number,
+  nome: string
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,16 +14,15 @@ import { CidadeService } from './cidade.service';
 export class AppComponent  implements OnInit {
   title = 'app-cadastro';
 
-  cidades = [
-    { id: 1, nome: 'Recife'}
-  ];
+  cidades: Cidade[] = [];
 
   constructor(private cidadeService: CidadeService){
 
   }
 
   ngOnInit(){
-    this.cidadeService.consultar();
+    this.cidadeService.consultar()
+      .then(dados => this.cidades = dados)
   }
 
   adicionar(nome: string) {

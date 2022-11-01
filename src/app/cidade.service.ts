@@ -11,5 +11,10 @@ export class CidadeService {
   consultar(): Promise<any>{
     return this.http.get('http://localhost:3000/cidades')
       .toPromise()
+    /*   .then(response => {
+        let cidades = response;
+        console.log(cidades);
+
+      }) */
   }
 }
