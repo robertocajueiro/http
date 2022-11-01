@@ -11,10 +11,12 @@ export class CidadeService {
   consultar(): Promise<any>{
     return this.http.get('http://localhost:3000/cidades')
       .toPromise()
-    /*   .then(response => {
-        let cidades = response;
-        console.log(cidades);
+      .then(response => response);
+  }
 
-      }) */
+  adicionar(cidade: any): Promise<any>{
+    return this.http.post('http://localhost:3000/cidades', cidade)
+      .toPromise()
+      .then(response => response);
   }
 }

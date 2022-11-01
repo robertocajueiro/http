@@ -20,13 +20,24 @@ export class AppComponent  implements OnInit {
 
   }
 
-  ngOnInit(){
+  ngOnInit(): void{
+    this.consultar();
+  }
+
+  consultar(){
     this.cidadeService.consultar()
-      .then(dados => this.cidades = dados)
+        .then(dados => {
+          this.cidades = dados;
+        })
   }
 
   adicionar(nome: string) {
-    alert(nome);
+    this.cidadeService.adicionar({ nome })
+      .then(cidade => {
+        alert(`Cidade "${cidade.nome}" adicionada com código ${cidade.id}!`);
+        this.consultar();
+      })
+
   }
 
   excluir(id: number) {
