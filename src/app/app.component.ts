@@ -28,7 +28,7 @@ export class AppComponent  implements OnInit {
     this.cidadeService.consultar()
         .then(dados => {
           this.cidades = dados;
-        })
+        });
   }
 
   adicionar(nome: string) {
@@ -36,7 +36,7 @@ export class AppComponent  implements OnInit {
       .then(cidade => {
         alert(`Cidade "${cidade.nome}" adicionada com código ${cidade.id}!`);
         this.consultar();
-      })
+      });
 
   }
 
@@ -45,10 +45,14 @@ export class AppComponent  implements OnInit {
       .then(() => {
         alert('Cidade excluida com sucesso!');
         this.consultar();
-      })
+      });
   }
 
   atualizar(cidade: any) {
-    alert(JSON.stringify(cidade));
+    this.cidadeService.atualizar(cidade)
+      .then(() => {
+        alert('Cidade alterado com sucesso!');
+      });
+
   }
 }
